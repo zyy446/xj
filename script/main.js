@@ -29,18 +29,17 @@ const fetchData = () => {
     })
 }
 
-let audio = null
-
-// 在文档加载时预加载音频
-document.addEventListener("DOMContentLoaded", () => {
-  audio = new Audio("music/bgMusic.mp3")
-  audio.preload = "auto"
-})
-
 const playPauseButton = document.getElementById('playPauseButton')
 let isPlaying = false // 初始状态为未播放
+let audio
 
 playPauseButton.addEventListener('click', () => {
+  if (!audio) {
+    // 在用户第一次点击播放按钮时创建和加载音频
+    audio = new Audio("music/bgMusic.mp3")
+    audio.preload = "auto"
+  }
+
   isPlaying = !isPlaying // 切换播放状态
 
   if (isPlaying) {
@@ -334,7 +333,7 @@ const animationTimeline = () => {
   // replyBtn.addEventListener("click", () => {
   //   tl.restart()
 
-// })
+  // })
 }
 
 // Run fetch and animation in sequence

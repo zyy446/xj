@@ -36,7 +36,10 @@ let audio
 playPauseButton.addEventListener('click', () => {
   if (!audio) {
     // 在用户第一次点击播放按钮时创建和加载音频
-    audio = new Audio("music/bgMusic.mp3")
+    audio = new Audio([
+      { src: "music/bgMusic.ogg", type: "audio/ogg" },
+      { src: "music/bgMusic.mp3", type: "audio/mpeg" }
+    ]);
     audio.preload = "auto"
   }
 
